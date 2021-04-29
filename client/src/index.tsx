@@ -1,4 +1,5 @@
 import { render } from 'react-dom';
-import './index.css';
+import Start from './containers/Start';
+import './styles/index.css';
 
-render(<div>Hello world!</div>, document.getElementById('root'));
+render(<Start />, document.getElementById('root'));

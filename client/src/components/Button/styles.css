@@ -1,0 +1,19 @@
+.button {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  background-color: var(--btn-inactive-bg-color);
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 8px;
+}
+
+.button:hover {
+  background-color: var(--btn-hover-bg-color);
+}
+
+.button:active {
+  background-color: var(--btn-pressed-bg-color);
+}
