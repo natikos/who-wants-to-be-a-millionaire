@@ -1,6 +1,7 @@
 :root {
   /* GENERAL */
   --text-color: #1c1c21;
+  --font-size-mobile: 32px;
 
   /* BUTTONS */
   --btn-inactive-bg-color: #ff8b37;
@@ -30,8 +31,4 @@
   --question-value-upcoming-bg-color: #ffffff;
   --question-value-upcoming-border-color: #d0d0d8;
   --question-value-upcoming-text-color: #1c1c21;
-}
-
-div {
-  color: var(--question-value-current-bg-color);
 }
