@@ -5,6 +5,7 @@
   },
   "extends": [
     "plugin:react/recommended",
+    "airbnb-typescript",
     "airbnb",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -16,7 +17,10 @@
       "jsx": true
     },
     "ecmaVersion": 12,
-    "sourceType": "module"
+    "sourceType": "module",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
