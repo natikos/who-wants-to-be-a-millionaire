@@ -1,14 +1,14 @@
 import './styles.css';
 
-interface IButtonProps {
+interface IButtonControlProps {
   text: string;
   onClick(): void;
 }
 
-const Button = ({ text, onClick }: IButtonProps) => (
+const ButtonControl = ({ text, onClick }: IButtonControlProps) => (
   <button className="button" type="button" onClick={onClick}>
     {text}
   </button>
 );
 
-export default Button;
+export default ButtonControl;

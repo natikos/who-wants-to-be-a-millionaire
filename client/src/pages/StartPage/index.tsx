@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import Button from '../../components/Button';
+import Button from '../../components/ButtonControl';
 import Hand from '../../assets/img/hand.svg';
 import { MAIN_CLASS, START_TITLE } from './constants';
 import { useGameFlow } from '../../helpers/hooks';
