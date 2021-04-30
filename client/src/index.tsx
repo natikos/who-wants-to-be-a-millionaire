@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import Start from './containers/Start';
+import StartPage from './containers/StartPage';
 import './styles/index.css';
 
-render(<Start />, document.getElementById('root'));
+render(<StartPage />, document.getElementById('root'));

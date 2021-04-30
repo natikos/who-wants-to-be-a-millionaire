@@ -1,7 +1,7 @@
 .button {
   width: 100%;
-  padding: 16px 24px;
-  font-size: 14px;
+  padding: 1em 1.5em;
+  font-size: 1em;
   font-weight: 600;
   line-height: 16px;
   background-color: var(--btn-inactive-bg-color);
