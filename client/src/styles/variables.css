@@ -1,7 +1,8 @@
 :root {
-  /* GENERAL */
+  /* TEXT */
   --text-color: #1c1c21;
-  --font-size-mobile: 32px;
+  --text-font-size-mobile: 14px;
+  --text-font-size-desktop: 20px;
 
   /* BUTTONS */
   --btn-inactive-bg-color: #ff8b37;
