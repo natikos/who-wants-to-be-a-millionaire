@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import AnswerButton from '../../components/AnswerButton';
 import { ALPHABET } from '../../helpers/constants';
 import { useGameFlow } from '../../helpers/hooks';
+import MobileBank from '../MobileBank';
 import './styles.css';
 
 const MAIN_CLASS = 'playground';
@@ -11,7 +12,10 @@ const Playground = (): ReactElement => {
 
   return (
     <div className={MAIN_CLASS}>
-      <h2>{currentLevel?.data.question}</h2>
+      <MobileBank />
+      <h2 className={`${MAIN_CLASS}__question`}>
+        {currentLevel?.data.question}
+      </h2>
       <div className={`${MAIN_CLASS}_choices`}>
         {currentLevel?.data.choices.map(({ value, label }, index) => (
           <AnswerButton

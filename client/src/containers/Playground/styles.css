@@ -1,0 +1,10 @@
+.playground__question {
+  text-align: center;
+  padding: 0 16px;
+}
+
+@media screen and (min-width: 1024px) {
+  .playground__bank_mobile {
+    display: none;
+  }
+}

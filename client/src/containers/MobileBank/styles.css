@@ -1,0 +1,24 @@
+.mobile-bank {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  background-color: var(--bank-bg-color);
+}
+
+.modal__control {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (min-width: 1024px) {
+  .mobile-bank {
+    display: none;
+  }
+}

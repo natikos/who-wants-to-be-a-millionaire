@@ -8,7 +8,7 @@ const GamePage = () => {
   return (
     <div className={MAIN_CLASS}>
       <Playground />
-      <Bank />
+      <Bank className={`${MAIN_CLASS}__bank_desktop`} />
     </div>
   );
 };
