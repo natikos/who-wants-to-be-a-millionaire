@@ -1,0 +1,86 @@
+.gameover-page {
+  display: grid;
+  grid-template-areas:
+    'picture'
+    'content'
+    'button';
+  grid-template-rows: [picture] 40% [content] 50% [button] 10%;
+  background-color: var(--bg-color-primary);
+  font-size: var(--text-font-size-mobile);
+  height: 100%;
+  font-weight: 600;
+  padding: 3em 1.2em;
+}
+
+.gameover-page .hand-icon {
+  grid-area: picture;
+  max-height: 100%;
+  align-self: flex-end;
+}
+
+.gameover-page button {
+  grid-area: button;
+  max-width: 320px;
+  justify-self: center;
+}
+
+.gameover-page__content {
+  grid-area: content;
+  align-self: flex-start;
+}
+
+.gameover-page__result {
+  font-size: 2.3em;
+  text-align: center;
+}
+
+.gameover-page__result span {
+  opacity: 0.5;
+  display: block;
+  font-size: 0.6em;
+}
+
+@media screen and (min-width: 1024px) {
+  .gameover-page {
+    grid-template-areas:
+      '. .'
+      'picture content'
+      'picture button'
+      '. .';
+    grid-template-rows: 25%;
+    grid-template-columns: 55% 45%;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+
+  .gameover-page .hand-icon {
+    align-self: center;
+  }
+
+  .gameover-page__content {
+    justify-self: flex-start;
+    align-self: flex-end;
+  }
+
+  .gameover-page__result {
+    justify-self: self-start;
+    font-size: 3vw;
+  }
+
+  .gameover-page__result span {
+    text-align: start;
+  }
+
+  .gameover-page button {
+    align-self: flex-start;
+    justify-self: flex-start;
+    font-size: 1.6vw;
+    max-width: 70%;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .gameover-page {
+    max-width: 70vw;
+  }
+}
