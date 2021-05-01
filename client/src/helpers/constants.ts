@@ -5,3 +5,5 @@ export const ROUTES: GameRoute = {
   end: '/end',
   game: '/',
 };
+
+export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';

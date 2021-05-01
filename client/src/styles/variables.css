@@ -1,4 +1,6 @@
 :root {
+  --game-bg-color: #e5e5e5;
+
   /* TEXT */
   --text-color: #1c1c21;
   --text-font-size-mobile: 14px;
@@ -9,9 +11,10 @@
   --btn-pressed-bg-color: #e87928;
   --btn-hover-bg-color: #ffac70;
   --btn-text-color: #ffffff;
+  --btn-option-letter-color: #ff8b37;
 
   /* OPTIONS */
-  --option-inactive-bg-color: #ff8b37;
+  --option-inactive-bg-color: #ffffff;
   --option-inactive-border-color: #d0d0d8;
   --option-hover-bg-color: #ffffff;
   --option-hover-border-color: #ff8b37;

@@ -1,4 +1,4 @@
-.button {
+.control-button {
   width: 100%;
   padding: 1em 1.5em;
   font-size: 1em;
@@ -11,10 +11,10 @@
   cursor: pointer;
 }
 
-.button:hover {
+.control-button:hover {
   background-color: var(--btn-hover-bg-color);
 }
 
-.button:active {
+.control-button:active {
   background-color: var(--btn-pressed-bg-color);
 }
