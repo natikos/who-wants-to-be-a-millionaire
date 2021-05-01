@@ -1,0 +1,19 @@
+.bank {
+  background-color: var(--game-bg-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  padding-bottom: 10vh;
+}
+
+.bank > .bank-item {
+  margin-bottom: 0.5em;
+}
+
+@media screen and (min-width: 1024px) {
+  .bank {
+    background-color: var(--bank-bg-color-desktop);
+    padding: 0;
+  }
+}

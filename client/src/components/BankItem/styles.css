@@ -1,0 +1,47 @@
+.bank-item__left-decor,
+.bank-item__right-decor,
+.bank-item__box {
+  stroke: var(--question-value-upcoming-border-color);
+}
+
+.bank-item__box {
+  fill: var(--question-value-upcoming-bg-color);
+}
+
+.bank-item__content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--question-value-upcoming-text-color);
+}
+
+/* STATES */
+.bank-item_passed .bank-item__left-decor,
+.bank-item_passed .bank-item__right-decor,
+.bank-item_passed .bank-item__box {
+  stroke: var(--question-value-passed-border-color);
+}
+
+.bank-item_passed .bank-item__box {
+  fill: var(--question-value-passed-bg-color);
+}
+
+.bank-item_passed .bank-item__content {
+  color: var(--question-value-passed-text-color);
+}
+
+.bank-item_current .bank-item__left-decor,
+.bank-item_current .bank-item__right-decor,
+.bank-item_current .bank-item__box {
+  stroke: var(--question-value-current-border-color);
+}
+
+.bank-item_current .bank-item__box {
+  fill: var(--question-value-current-bg-color);
+}
+
+.bank-item_current .bank-item__content {
+  color: var(--question-value-current-text-color);
+}
