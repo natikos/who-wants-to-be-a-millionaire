@@ -1,19 +1,19 @@
 import { ReactElement } from 'react';
-import { IOnChooseAnswer } from '../../helpers/types';
+import { ChoiceState, IOnChooseAnswer } from '../../helpers/types';
 import './styles.css';
 
-interface IAnswerButtonProps {
+interface IChoiceButtonProps {
   value: string;
   label: string;
   letter: string;
   disabled?: boolean;
   onChooseAnswer: IOnChooseAnswer;
-  state?: 'inactive' | 'correct' | 'wrong' | 'selected';
+  state?: ChoiceState;
 }
 
-const MAIN_CLASS = 'answer-button';
+const MAIN_CLASS = 'choice-button';
 
-const AnswerButton = (props: IAnswerButtonProps): ReactElement => {
+const ChoiceButton = (props: IChoiceButtonProps): ReactElement => {
   const {
     letter,
     onChooseAnswer,
@@ -48,4 +48,4 @@ const AnswerButton = (props: IAnswerButtonProps): ReactElement => {
   );
 };
 
-export default AnswerButton;
+export default ChoiceButton;

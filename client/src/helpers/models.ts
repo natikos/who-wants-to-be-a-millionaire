@@ -1,4 +1,4 @@
-export interface IAnswerChoice {
+export interface IChoice {
   label: string;
   value: string;
   correct?: boolean;
@@ -7,7 +7,7 @@ export interface IAnswerChoice {
 export interface IQuestion {
   id: number;
   question: string;
-  choices: IAnswerChoice[];
+  choices: IChoice[];
 }
 
 export interface ILevel {

@@ -1,15 +1,19 @@
 import { FC, ReactElement } from 'react';
 import BankItem from '../../components/BankItem';
 import GameManager from '../../helpers/GameManager';
-import { LevelValueState } from '../../helpers/types';
+import { ILevelValue, LevelValueState } from '../../helpers/types';
 import './styles.css';
 
-interface IBankProps {
+export interface IBankProps {
   className?: string;
+  levelValues: ILevelValue[];
 }
 
-const Bank: FC<IBankProps> = ({ className = '' }): ReactElement => {
-  const calculateBankItemState = (levelId: string): LevelValueState => {
+const Bank: FC<IBankProps> = ({
+  className = '',
+  levelValues,
+}): ReactElement => {
+  const getBankItemState = (levelId: string): LevelValueState => {
     if (GameManager.isLevelPassed(levelId)) {
       return 'passed';
     } else if (GameManager.currentLevelId === levelId) {
@@ -20,11 +24,11 @@ const Bank: FC<IBankProps> = ({ className = '' }): ReactElement => {
 
   return (
     <div className={`bank ${className}`}>
-      {GameManager.levelValues.map(({ levelId, prize }) => (
+      {levelValues.map(({ levelId, prize }) => (
         <BankItem
           key={levelId}
           value={prize}
-          state={calculateBankItemState(levelId)}
+          state={getBankItemState(levelId)}
         />
       ))}
     </div>

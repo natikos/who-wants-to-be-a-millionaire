@@ -1,27 +1,87 @@
-import { ReactElement } from 'react';
-import AnswerButton from '../../components/AnswerButton';
+import { ReactElement, useEffect, useState } from 'react';
+import ChoiceButton from '../../components/ChoiceButton';
 import { ALPHABET } from '../../helpers/constants';
-import { useGameFlow } from '../../helpers/hooks';
+import { IChoice, ILevel } from '../../helpers/models';
+import { ChoiceState } from '../../helpers/types';
+import { IBankProps } from '../Bank';
 import MobileBank from '../MobileBank';
 import './styles.css';
 
 const MAIN_CLASS = 'playground';
 
-const Playground = (): ReactElement => {
-  const { currentLevel, chooseAnswer } = useGameFlow();
+interface IPlaygroundProps extends IBankProps {
+  currentLevel: ILevel | null;
+  getAnswer(): IChoice | null;
+  moveToNextLevel(): void;
+  endGame(): void;
+}
+
+const Playground = (props: IPlaygroundProps): ReactElement => {
+  const { getAnswer, moveToNextLevel, endGame, currentLevel } = props;
+  const [answer, setAnswer] = useState<IChoice | null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<IChoice | null>(null);
+  const [waitForAnswer, setWaitForAnswer] = useState(false);
+
+  useEffect(() => {
+    if (answer) {
+      let resultTimer: ReturnType<typeof setTimeout> | null = null;
+
+      const showAnswerTimer = setTimeout(() => {
+        setWaitForAnswer(false);
+        resultTimer = setTimeout(() => {
+          clearTimeouts();
+          if (selectedChoice?.value === answer?.value) {
+            moveToNextLevel();
+          } else {
+            endGame();
+          }
+          setSelectedChoice(null);
+          setAnswer(null);
+        }, 4000);
+      }, 2000);
+
+      const clearTimeouts = () => {
+        clearTimeout(showAnswerTimer);
+        if (resultTimer) {
+          clearTimeout(resultTimer);
+        }
+      };
+
+      return clearTimeouts;
+    }
+  }, [answer]);
+
+  const onClick = (choice: IChoice): void => {
+    setWaitForAnswer(true);
+    setSelectedChoice(choice);
+    setAnswer(getAnswer());
+  };
+
+  const getChoiceState = (choice: IChoice): ChoiceState => {
+    if (
+      !waitForAnswer &&
+      selectedChoice &&
+      choice.value === selectedChoice.value
+    ) {
+      return choice.value === answer?.value ? 'correct' : 'wrong';
+    }
+    return choice.value === selectedChoice?.value ? 'selected' : 'inactive';
+  };
 
   return (
     <div className={MAIN_CLASS}>
-      <MobileBank />
+      <MobileBank levelValues={props.levelValues} />
       <p className={`${MAIN_CLASS}__question`}>{currentLevel?.data.question}</p>
       <div className={`${MAIN_CLASS}__choices`}>
-        {currentLevel?.data.choices.map(({ value, label }, index) => (
-          <AnswerButton
-            key={value}
-            value={value}
-            label={label}
+        {currentLevel?.data.choices.map((item, index) => (
+          <ChoiceButton
+            disabled={waitForAnswer || !!selectedChoice}
+            state={getChoiceState(item)}
+            key={item.value}
+            value={item.value}
+            label={item.label}
             letter={ALPHABET[index]}
-            onChooseAnswer={() => chooseAnswer(value)}
+            onChooseAnswer={() => onClick(item)}
           />
         ))}
       </div>

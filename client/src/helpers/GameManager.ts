@@ -1,6 +1,6 @@
-import { IGameData, ILevel } from './models';
+import { IChoice, IGameData, ILevel } from './models';
 import SessionStorageManager from './SessionStorageManager';
-import { GameStatus, ILevelValue, LevelValueState } from './types';
+import { GameStatus, ILevelValue } from './types';
 import mockdata from './mock.json';
 import axios from 'axios';
 
@@ -72,9 +72,14 @@ export default class GameManager {
     SessionStorageManager.set(GameManager.GAME_STATUS_KEY, GameStatus.START);
   }
 
-  static goToNextLevel = (): void => {
+  static goToNextLevel = (): boolean => {
     const newLevel = Number(GameManager.currentLevelId) + 1;
-    SessionStorageManager.set(GameManager.LEVEL_KEY, newLevel.toString());
+    const isNextLevelExist = GameManager.levels.get(newLevel.toString());
+    if (isNextLevelExist) {
+      SessionStorageManager.set(GameManager.LEVEL_KEY, newLevel.toString());
+      return true;
+    }
+    return false;
   };
 
   static finishGame(): void {
@@ -98,11 +103,11 @@ export default class GameManager {
     });
   }
 
-  static isCorrectAnswer(value: string): boolean {
-    const isCorrect = GameManager.levels
-      .get(GameManager.currentLevelId)
-      ?.data.choices.find((choice) => choice.value === value)?.correct;
-
-    return Boolean(isCorrect);
+  static getAnswerForCurrentLevel(): IChoice | null {
+    return (
+      GameManager.levels
+        .get(GameManager.currentLevelId)
+        ?.data.choices.find((choice) => choice.correct) ?? null
+    );
   }
 }
