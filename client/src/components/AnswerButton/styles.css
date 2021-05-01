@@ -1,0 +1,92 @@
+.answer-button {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.answer-button:disabled {
+  cursor: default;
+}
+
+.answer-button .answer-button__content {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  align-items: center;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.answer-button__content-scrollable {
+  width: 90%;
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+  overflow: auto;
+  align-items: center;
+}
+
+.answer-button__letter {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--btn-option-letter-color);
+  text-transform: uppercase;
+}
+
+.answer-button__label {
+  color: var(--text-color);
+  font-size: 1em;
+}
+
+/* STATES */
+.answer-button_inactive .answer-button__box {
+  fill: var(--option-inactive-bg-color);
+  stroke: var(--option-inactive-border-color);
+}
+
+.answer-button_inactive .answer-button__decor_left,
+.answer-button_inactive .answer-button__decor_right {
+  stroke: var(--option-inactive-border-color);
+}
+
+.answer-button_inactive:hover:enabled .answer-button__box {
+  fill: var(--option-hover-bg-color);
+  stroke: var(--option-hover-border-color);
+}
+
+.answer-button_inactive:hover:enabled .answer-button__decor_left,
+.answer-button_inactive:hover:enabled .answer-button__decor_right {
+  stroke: var(--option-hover-border-color);
+}
+
+.answer-button_correct .answer-button__box {
+  fill: var(--option-correct-bg-color);
+  stroke: var(--option-correct-border-color);
+}
+
+.answer-button_correct .answer-button__decor_left,
+.answer-button_correct .answer-button__decor_right {
+  stroke: var(--option-correct-border-color);
+}
+
+.answer-button_wrong .answer-button__box {
+  fill: var(--option-wrong-bg-color);
+  stroke: var(--option-wrong-border-color);
+}
+
+.answer-button_wrong .answer-button__decor_left,
+.answer-button_wrong .answer-button__decor_right {
+  stroke: var(--option-wrong-border-color);
+}
+
+.answer-button_selected .answer-button__box {
+  fill: var(--option-selected-bg-color);
+  stroke: var(--option-selected-border-color);
+}
+
+.answer-button_selected .answer-button__decor_left,
+.answer-button_selected .answer-button__decor_right {
+  stroke: var(--option-selected-border-color);
+}

@@ -7,5 +7,5 @@ export default class SessionStorageManager {
     sessionStorage.clear();
   };
 
-  static get = (key: string): string => sessionStorage.getItem(key) ?? '';
+  static get = (key: string): string | null => sessionStorage.getItem(key);
 }

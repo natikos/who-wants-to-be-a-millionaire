@@ -9,3 +9,7 @@ export type RoutePath = '/start' | '/end' | '/';
 export type GameRoute = {
   [key in 'start' | 'game' | 'end']: RoutePath;
 };
+
+export interface IOnChooseAnswer {
+  (value: string): void;
+}
