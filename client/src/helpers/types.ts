@@ -5,7 +5,7 @@ export enum GameStatus {
 }
 
 export type RoutePath = '/start' | '/end' | '/';
-
+export type ChoiceState = 'inactive' | 'correct' | 'wrong' | 'selected';
 export type LevelValueState = 'passed' | 'upcoming' | 'current';
 
 export type GameRoute = {

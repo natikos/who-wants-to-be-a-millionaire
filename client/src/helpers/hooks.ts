@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router';
 import { ROUTES } from './constants';
 import GameManager from './GameManager';
-import { ILevel } from './models';
+import { IChoice, ILevel } from './models';
 
 export const useGameFlow = () => {
   const [currentLevel, setCurrentLevel] = useState<ILevel | null>(null);
@@ -17,14 +17,18 @@ export const useGameFlow = () => {
   }, [setCurrentLevel, level]);
 
   const moveToNextLevel = (): void => {
-    GameManager.goToNextLevel();
-    setCurrentLevel(GameManager.currentLevel);
+    const isNextLevelExist = GameManager.goToNextLevel();
+    if (isNextLevelExist) {
+      setCurrentLevel(GameManager.currentLevel);
+    } else {
+      endGame();
+    }
   };
 
   const endGame = (): void => {
     GameManager.finishGame();
-    history.push(ROUTES.end);
     setCurrentLevel(null);
+    history.push(ROUTES.end);
   };
 
   const newGame = (): void => {
@@ -39,15 +43,17 @@ export const useGameFlow = () => {
     });
   };
 
-  const chooseAnswer = (answer: string): void => {
-    const isCorrectAnswer = GameManager.isCorrectAnswer(answer);
-    isCorrectAnswer ? moveToNextLevel() : endGame();
+  const getAnswer = (): IChoice | null => {
+    return GameManager.getAnswerForCurrentLevel();
   };
 
   return {
     currentLevel,
     newGame,
+    endGame,
+    moveToNextLevel,
     playGame,
-    chooseAnswer,
+    getAnswer,
+    levelValues: GameManager.levelValues,
   };
 };

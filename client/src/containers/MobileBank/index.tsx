@@ -1,11 +1,11 @@
 import { ReactElement, useState } from 'react';
 import HamburgerButton from '../../components/HamburgerButton';
-import Bank from '../Bank';
+import Bank, { IBankProps } from '../Bank';
 import './styles.css';
 
 const MAIN_CLASS = 'mobile-bank';
 
-const MobileBank = (): ReactElement | null => {
+const MobileBank = (props: IBankProps): ReactElement | null => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const menuBtn = (
     <HamburgerButton
@@ -20,7 +20,7 @@ const MobileBank = (): ReactElement | null => {
       {isModalOpened && (
         <div className="modal">
           <div className="modal__control">{menuBtn}</div>
-          <Bank />
+          <Bank {...props} />
         </div>
       )}
     </div>
