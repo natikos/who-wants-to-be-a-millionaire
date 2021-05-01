@@ -1,6 +1,6 @@
 import { IGameData, ILevel } from './models';
 import SessionStorageManager from './SessionStorageManager';
-import { GameStatus } from './types';
+import { GameStatus, ILevelValue, LevelValueState } from './types';
 import mockdata from './mock.json';
 import axios from 'axios';
 
@@ -10,16 +10,34 @@ export default class GameManager {
   private static readonly GAME_STATUS_KEY = 'gameStatus';
   private static levels: Map<string, ILevel> = new Map();
 
-  private static get currentLevelId(): string {
+  static get currentLevelId(): string {
     return SessionStorageManager.get(GameManager.LEVEL_KEY) ?? '';
   }
 
-  static get currentLevel(): ILevel | null {
+  private static loadData(): void {
     const data = SessionStorageManager.get(GameManager.GAME_DATA_KEY);
     if (!GameManager.levels.size && data) {
       GameManager.levels = new Map(Object.entries(JSON.parse(data)));
     }
+  }
+
+  static get currentLevel(): ILevel | null {
+    GameManager.loadData();
     return GameManager.levels.get(GameManager.currentLevelId) ?? null;
+  }
+
+  static get levelValues(): ILevelValue[] {
+    GameManager.loadData();
+    const prizesForLevels: ILevelValue[] = [];
+    GameManager.levels.forEach(({ prize }, levelId) =>
+      prizesForLevels.push({ prize, levelId }),
+    );
+    return prizesForLevels;
+  }
+
+  static isLevelPassed(levelId: string): boolean {
+    const currentLevelId = Number(GameManager.currentLevelId);
+    return Number(levelId) < currentLevelId;
   }
 
   static get gameStatus(): GameStatus {

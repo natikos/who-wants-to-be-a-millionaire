@@ -2,21 +2,17 @@
   height: 100%;
 }
 
-.playground {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 24px;
-  box-sizing: border-box;
-}
-
 .game-page__bank_desktop {
   display: none;
 }
 
 @media screen and (min-width: 1024px) {
+  .game-page {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+
   .game-page__bank_desktop {
-    display: block;
+    display: flex;
   }
 }

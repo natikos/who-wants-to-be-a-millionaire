@@ -1,6 +1,7 @@
 :root {
   --game-bg-color: #e5e5e5;
-  --bank-bg-color: #ffffff;
+  --bank-bg-color-mobile: #e5e5e5;
+  --bank-bg-color-desktop: #ffffff;
 
   /* TEXT */
   --text-color: #1c1c21;
@@ -30,8 +31,8 @@
   --question-value-passed-bg-color: #ffffff;
   --question-value-passed-border-color: #d0d0d8;
   --question-value-passed-text-color: #d0d0d8;
-  --question-value-current-bg-color: #ff8b37;
-  --question-value-current-border-color: #d0d0d8;
+  --question-value-current-bg-color: #ffffff;
+  --question-value-current-border-color: #ff8b37;
   --question-value-current-text-color: #ff8b37;
   --question-value-upcoming-bg-color: #ffffff;
   --question-value-upcoming-border-color: #d0d0d8;
