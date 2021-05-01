@@ -16,7 +16,7 @@ const Playground = (): ReactElement => {
       <h2 className={`${MAIN_CLASS}__question`}>
         {currentLevel?.data.question}
       </h2>
-      <div className={`${MAIN_CLASS}_choices`}>
+      <div className={`${MAIN_CLASS}__choices`}>
         {currentLevel?.data.choices.map(({ value, label }, index) => (
           <AnswerButton
             key={value}
