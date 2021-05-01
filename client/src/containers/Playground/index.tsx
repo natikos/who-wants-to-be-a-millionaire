@@ -13,9 +13,7 @@ const Playground = (): ReactElement => {
   return (
     <div className={MAIN_CLASS}>
       <MobileBank />
-      <h2 className={`${MAIN_CLASS}__question`}>
-        {currentLevel?.data.question}
-      </h2>
+      <p className={`${MAIN_CLASS}__question`}>{currentLevel?.data.question}</p>
       <div className={`${MAIN_CLASS}__choices`}>
         {currentLevel?.data.choices.map(({ value, label }, index) => (
           <AnswerButton
