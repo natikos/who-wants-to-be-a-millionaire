@@ -1,8 +1,12 @@
-import { ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import './styles.css';
 
-const Bank = (): ReactElement => {
-  return <div></div>;
+interface IBankProps {
+  className?: string;
+}
+
+const Bank: FC<IBankProps> = ({ className }): ReactElement => {
+  return <div className={className}>Bank!</div>;
 };
 
 export default Bank;

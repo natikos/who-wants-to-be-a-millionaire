@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router';
 import { ROUTES } from './constants';
 import GameManager from './GameManager';
-import { IAnswerChoice, ILevel } from './models';
+import { ILevel } from './models';
 
 export const useGameFlow = () => {
   const [currentLevel, setCurrentLevel] = useState<ILevel | null>(null);
