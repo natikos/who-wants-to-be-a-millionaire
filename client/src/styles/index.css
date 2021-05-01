@@ -1,6 +1,10 @@
 @import url('./variables.css');
 @import url('./fonts.css');
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
