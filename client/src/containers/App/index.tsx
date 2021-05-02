@@ -6,23 +6,36 @@ import StartPage from '../../pages/StartPage';
 import GameRoute from '../../components/core/GameRoute';
 import { ROUTES } from '../../helpers/constants';
 import { getRedirectRoute } from '../../helpers/utils';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
 const App = (): ReactElement => (
-  <Router>
-    <Switch>
-      <GameRoute path={ROUTES.start}>
-        <StartPage />
-      </GameRoute>
-      <GameRoute path={ROUTES.end}>
-        <GameOverPage />
-      </GameRoute>
-      <GameRoute path={ROUTES.game}>
-        <GamePage />
-      </GameRoute>
-      <Redirect to={getRedirectRoute()} />
-    </Switch>
-  </Router>
+  <>
+    <Router>
+      <Switch>
+        <GameRoute path={ROUTES.start}>
+          <StartPage />
+        </GameRoute>
+        <GameRoute path={ROUTES.end}>
+          <GameOverPage />
+        </GameRoute>
+        <GameRoute path={ROUTES.game}>
+          <GamePage />
+        </GameRoute>
+        <Redirect to={getRedirectRoute()} />
+      </Switch>
+    </Router>
+    <ToastContainer
+      className="notification"
+      progressClassName="notification__progressbar"
+      bodyClassName="notification__content"
+      closeOnClick={false}
+      pauseOnHover={false}
+      pauseOnFocusLoss={false}
+      closeButton={false}
+    />
+  </>
 );
 
 export default App;
