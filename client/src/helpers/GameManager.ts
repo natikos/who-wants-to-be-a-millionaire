@@ -1,7 +1,6 @@
 import { IChoice, IGameData, ILevel } from './models';
 import SessionStorageManager from './SessionStorageManager';
 import { GameStatus, ILevelValue } from './types';
-import mockdata from './mock.json';
 import axios from 'axios';
 
 export default class GameManager {
@@ -87,27 +86,34 @@ export default class GameManager {
   }
 
   static async playGame(): Promise<void> {
-    // MOCK ASYNC REQUEST
-    return axios.get('https://jsonplaceholder.typicode.com/users').then(() => {
-      const data = (mockdata as any) as IGameData;
+    const startGame = () => {
       SessionStorageManager.set(
         GameManager.GAME_STATUS_KEY,
         GameStatus.PLAYING,
       );
-      GameManager.levels = new Map(Object.entries(data));
       SessionStorageManager.set(GameManager.LEVEL_KEY, '1');
-      SessionStorageManager.set(
-        GameManager.GAME_DATA_KEY,
-        JSON.stringify(data),
-      );
-    });
+    };
+
+    if (GameManager.levels.size) {
+      return Promise.resolve().then(startGame);
+    }
+    return axios
+      .get('http://localhost:8080/')
+      .then(({ data }: { data: IGameData }) => {
+        startGame();
+        GameManager.levels = new Map(Object.entries(data));
+        SessionStorageManager.set(
+          GameManager.GAME_DATA_KEY,
+          JSON.stringify(data),
+        );
+      });
   }
 
   static getAnswerForCurrentLevel(): IChoice | null {
     return (
       GameManager.levels
         .get(GameManager.currentLevelId)
-        ?.data.choices.find((choice) => choice.correct) ?? null
+        ?.question.choices.find((choice) => choice.correct) ?? null
     );
   }
 }
