@@ -4,6 +4,7 @@ import GameManager from './GameManager';
 export const getRedirectRoute = (): string => {
   if (GameManager.isOngoingGame) return ROUTES.game;
   if (GameManager.isGameOver) return ROUTES.end;
+  GameManager.startNewGame();
   return ROUTES.start;
 };
 

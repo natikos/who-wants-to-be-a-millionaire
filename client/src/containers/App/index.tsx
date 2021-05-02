@@ -7,11 +7,12 @@ import GameRoute from '../../components/core/GameRoute';
 import { ROUTES } from '../../helpers/constants';
 import { getRedirectRoute } from '../../helpers/utils';
 import { ToastContainer } from 'react-toastify';
+import { ErrorBoundary } from '../ErrorBoundary';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
 const App = (): ReactElement => (
-  <>
+  <ErrorBoundary>
     <Router>
       <Switch>
         <GameRoute path={ROUTES.start}>
@@ -35,7 +36,7 @@ const App = (): ReactElement => (
       pauseOnFocusLoss={false}
       closeButton={false}
     />
-  </>
+  </ErrorBoundary>
 );
 
 export default App;

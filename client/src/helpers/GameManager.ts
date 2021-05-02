@@ -14,20 +14,42 @@ export default class GameManager {
     return SessionStorageManager.get(GameManager.LEVEL_KEY) ?? '';
   }
 
-  private static loadData(): void {
+  private static loadDataFromStorage(): void {
     const data = SessionStorageManager.get(GameManager.GAME_DATA_KEY);
     if (!GameManager.levels.size && data) {
-      GameManager.levels = new Map(Object.entries(JSON.parse(data)));
+      const validData = Object.entries(JSON.parse(data)) as [string, ILevel][];
+      if (!validData.length) {
+        throw new Error('Incorrect data in storage');
+      }
+      GameManager.levels = new Map(validData);
+    }
+  }
+
+  private static saveDataToStorage(): void {
+    const data = SessionStorageManager.get(GameManager.GAME_DATA_KEY);
+    if (!data) {
+      SessionStorageManager.set(
+        GameManager.GAME_DATA_KEY,
+        JSON.stringify(Object.fromEntries(GameManager.levels)),
+      );
     }
   }
 
   static get currentLevel(): ILevel | null {
-    GameManager.loadData();
+    try {
+      GameManager.loadDataFromStorage();
+    } catch (err) {
+      GameManager.startNewGame();
+    }
     return GameManager.levels.get(GameManager.currentLevelId) ?? null;
   }
 
   static get levelValues(): ILevelValue[] {
-    GameManager.loadData();
+    try {
+      GameManager.loadDataFromStorage();
+    } catch (err) {
+      GameManager.startNewGame();
+    }
     const prizesForLevels: ILevelValue[] = [];
     GameManager.levels.forEach(({ prize }, levelId) =>
       prizesForLevels.push({ prize, levelId }),
@@ -48,10 +70,17 @@ export default class GameManager {
   }
 
   static get isOngoingGame(): boolean {
-    return (
+    const isPlayingGame =
       SessionStorageManager.get(GameManager.GAME_STATUS_KEY) ===
-      GameStatus.PLAYING
-    );
+      GameStatus.PLAYING;
+    const isLocalDataExist = Boolean(GameManager.levels.size);
+    try {
+      GameManager.loadDataFromStorage();
+    } catch (err) {
+      GameManager.startNewGame();
+    }
+    const isCurrentLevel = Boolean(GameManager.currentLevelId.length);
+    return isPlayingGame && isLocalDataExist && isCurrentLevel;
   }
 
   static get isAbleToStart(): boolean {
@@ -73,6 +102,7 @@ export default class GameManager {
   }
 
   static goToNextLevel = (): boolean => {
+    GameManager.saveDataToStorage();
     const newLevel = Number(GameManager.currentLevelId) + 1;
     const isNextLevelExist = GameManager.levels.get(newLevel.toString());
     if (isNextLevelExist) {
