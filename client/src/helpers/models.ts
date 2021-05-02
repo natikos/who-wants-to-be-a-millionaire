@@ -1,17 +1,17 @@
 export interface IChoice {
   label: string;
   value: string;
-  correct?: boolean;
+  correct: boolean;
 }
 
 export interface IQuestion {
   id: number;
-  question: string;
+  value: string;
   choices: IChoice[];
 }
 
 export interface ILevel {
-  data: IQuestion;
+  question: IQuestion;
   prize: number;
 }
 

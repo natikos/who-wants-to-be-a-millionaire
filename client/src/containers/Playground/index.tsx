@@ -32,11 +32,11 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
           clearTimeouts();
           if (selectedChoice?.value === answer?.value) {
             moveToNextLevel();
+            setAnswer(null);
           } else {
             endGame();
           }
           setSelectedChoice(null);
-          setAnswer(null);
         }, 4000);
       }, 2000);
 
@@ -64,6 +64,8 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
       choice.value === selectedChoice.value
     ) {
       return choice.value === answer?.value ? 'correct' : 'wrong';
+    } else if (!waitForAnswer && choice.value === answer?.value) {
+      return 'correct';
     }
     return choice.value === selectedChoice?.value ? 'selected' : 'inactive';
   };
@@ -71,9 +73,11 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
   return (
     <div className={MAIN_CLASS}>
       <MobileBank levelValues={props.levelValues} />
-      <p className={`${MAIN_CLASS}__question`}>{currentLevel?.data.question}</p>
+      <p className={`${MAIN_CLASS}__question`}>
+        {currentLevel?.question.value}
+      </p>
       <div className={`${MAIN_CLASS}__choices`}>
-        {currentLevel?.data.choices.map((item, index) => (
+        {currentLevel?.question.choices.map((item, index) => (
           <ChoiceButton
             disabled={waitForAnswer || !!selectedChoice}
             state={getChoiceState(item)}
