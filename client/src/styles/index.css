@@ -26,12 +26,17 @@ p {
   font-family: 'Inter', sans-serif;
 }
 
-.notification {
+.notification_failure,
+.notification_success {
   cursor: default;
 }
 
-.notification__progressbar {
-  background: var(--toast-progress-bg-color);
+.notification_failure .notification__progressbar {
+  background: var(--option-wrong-border-color);
+}
+
+.notification_success .notification__progressbar {
+  background: var(--option-correct-border-color);
 }
 
 .notification__content {
