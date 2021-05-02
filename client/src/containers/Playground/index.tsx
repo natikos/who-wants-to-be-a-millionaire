@@ -33,17 +33,19 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
 
       const showAnswerTimer = setTimeout(() => {
         setWaitForAnswer(false);
+        const delayInSec = GO_NEXT_DELAY / 1000;
+        const isNextLevel = selectedChoice?.value === answer?.value;
+        const toastStateClass = isNextLevel ? 'success' : 'failure';
+        toast(
+          isNextLevel
+            ? `Hurray! Going to next level in ${delayInSec}s!`
+            : `Oh, so sad! Finishing game in ${delayInSec}s :(`,
+          {
+            autoClose: GO_NEXT_DELAY,
+            className: `notification_${toastStateClass}`,
+          },
+        );
         resultTimer = setTimeout(() => {
-          const isNextLevel = selectedChoice?.value === answer?.value;
-          const delayInSec = GO_NEXT_DELAY / 1000;
-          toast(
-            isNextLevel
-              ? `Going to next level in ${delayInSec}`
-              : `Finishing game in ${delayInSec}`,
-            {
-              autoClose: delayInSec,
-            },
-          );
           clearTimeouts();
           if (isNextLevel) {
             moveToNextLevel();
