@@ -7,3 +7,5 @@ export const ROUTES: GameRoute = {
 };
 
 export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
+export const SHOWING_ANSWER_DELAY = 2000;
+export const GO_NEXT_DELAY = 4000;

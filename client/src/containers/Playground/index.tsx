@@ -1,6 +1,11 @@
 import { ReactElement, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import ChoiceButton from '../../components/ChoiceButton';
-import { ALPHABET } from '../../helpers/constants';
+import {
+  ALPHABET,
+  GO_NEXT_DELAY,
+  SHOWING_ANSWER_DELAY,
+} from '../../helpers/constants';
 import { IChoice, ILevel } from '../../helpers/models';
 import { ChoiceState } from '../../helpers/types';
 import { IBankProps } from '../Bank';
@@ -29,16 +34,26 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
       const showAnswerTimer = setTimeout(() => {
         setWaitForAnswer(false);
         resultTimer = setTimeout(() => {
+          const isNextLevel = selectedChoice?.value === answer?.value;
+          const delayInSec = GO_NEXT_DELAY / 1000;
+          toast(
+            isNextLevel
+              ? `Going to next level in ${delayInSec}`
+              : `Finishing game in ${delayInSec}`,
+            {
+              autoClose: delayInSec,
+            },
+          );
           clearTimeouts();
-          if (selectedChoice?.value === answer?.value) {
+          if (isNextLevel) {
             moveToNextLevel();
             setAnswer(null);
           } else {
             endGame();
           }
           setSelectedChoice(null);
-        }, 4000);
-      }, 2000);
+        }, GO_NEXT_DELAY);
+      }, SHOWING_ANSWER_DELAY);
 
       const clearTimeouts = () => {
         clearTimeout(showAnswerTimer);

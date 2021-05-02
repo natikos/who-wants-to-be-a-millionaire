@@ -25,3 +25,16 @@ span,
 p {
   font-family: 'Inter', sans-serif;
 }
+
+.notification {
+  cursor: default;
+}
+
+.notification__progressbar {
+  background: var(--toast-progress-bg-color);
+}
+
+.notification__content {
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+}

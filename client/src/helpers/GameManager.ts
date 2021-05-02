@@ -2,6 +2,7 @@ import { IChoice, IGameData, ILevel } from './models';
 import SessionStorageManager from './SessionStorageManager';
 import { GameStatus, ILevelValue } from './types';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default class GameManager {
   private static readonly LEVEL_KEY = 'currentLevel';
@@ -106,6 +107,9 @@ export default class GameManager {
           GameManager.GAME_DATA_KEY,
           JSON.stringify(data),
         );
+      })
+      .catch(() => {
+        toast(`Oh no, error! Please, try again later :(`);
       });
   }
 
