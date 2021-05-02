@@ -3,15 +3,16 @@ package game
 import (
 	"encoding/json"
 	"net/http"
+	"time"
 )
 
-func GameHandler(response http.ResponseWriter, request *http.Request) {
-	response.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	response.Header().Set("Content-Type", "application/json")
-	gameData, err := getGameLevels(response)
-	if err != nil {
+func GameHandler(writer http.ResponseWriter, request *http.Request) {
+	start := time.Now()
+	gameData, gameDataErr := getGameLevels(writer)
+	if gameDataErr != nil {
 		return
 	}
 	responseDto := getQuestionPerLevel(gameData)
-	json.NewEncoder(response).Encode(responseDto)
+	writer.Header().Set("X-Response-Time", (time.Since(start) * time.Microsecond).String())
+	json.NewEncoder(writer).Encode(responseDto)
 }
