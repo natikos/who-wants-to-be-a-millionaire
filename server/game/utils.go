@@ -1,0 +1,54 @@
+package game
+
+import (
+	"encoding/json"
+	"log"
+	"net/http"
+	"os"
+)
+
+type HttpError struct {
+	Message string `json:"message"`
+}
+
+func getGameLevels(response http.ResponseWriter) (GameConfigs, *HttpError) { 
+	handleFailure := func (err error, message string) (*HttpError, bool) {
+		if err != nil {
+			httpError := HttpError{Message: message}
+			response.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(response).Encode(httpError)
+			return &httpError, true
+		}
+		return nil, false
+	}
+
+	file, readFileError := os.ReadFile("storage/data.json")
+	if err, isError := handleFailure(readFileError, "Invalid path to config file"); isError && err != nil {
+		return nil, err
+	}
+		
+	log.Println("File was readed")
+
+	var data GameConfigs
+
+	parsingJsonError := json.Unmarshal(file, &data)
+
+	if err, isError := handleFailure(parsingJsonError, "Invalid path to config file"); isError && err != nil {
+		return nil, err
+	}
+	
+	log.Println("File was parsed")
+
+	return data, nil
+}
+
+func getQuestionPerLevel(data GameConfigs) SingleGameData {
+	QuestionPerLevel := SingleGameData{}
+	for levelId, levelData := range data {
+		QuestionPerLevel[levelId] = SingleGameLevel{
+			Question: levelData.Questions[0],
+			Prize: levelData.Prize,
+		}
+	}
+	return QuestionPerLevel
+}
