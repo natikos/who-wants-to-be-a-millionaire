@@ -16,7 +16,8 @@ const Bank: FC<IBankProps> = ({
   const getBankItemState = (levelId: string): LevelValueState => {
     if (GameManager.isLevelPassed(levelId)) {
       return 'passed';
-    } if (GameManager.currentLevelId === levelId) {
+    }
+    if (GameManager.currentLevelId === levelId) {
       return 'current';
     }
     return 'upcoming';

@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'index.bundle.js',
-    publicPath: '/',
+    publicPath: '/who-wants-to-be-a-millionaire/',
   },
   mode: process.env.NODE_ENV || 'development',
   resolve: {

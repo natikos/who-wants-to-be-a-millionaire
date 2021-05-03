@@ -23,7 +23,11 @@ interface IPlaygroundProps extends IBankProps {
 
 const Playground = (props: IPlaygroundProps): ReactElement => {
   const {
-    getAnswer, moveToNextLevel, endGame, currentLevel, levelValues,
+    getAnswer,
+    moveToNextLevel,
+    endGame,
+    currentLevel,
+    levelValues,
   } = props;
   const [answer, setAnswer] = useState<IChoice | null>(null);
   const [selectedChoice, setSelectedChoice] = useState<IChoice | null>(null);
