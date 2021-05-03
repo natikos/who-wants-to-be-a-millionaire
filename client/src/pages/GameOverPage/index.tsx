@@ -3,7 +3,7 @@ import Hand from '../../assets/img/hand.svg';
 import GameManager from '../../helpers/GameManager';
 import { formatMoney } from '../../helpers/utils';
 import ControlButton from '../../components/ControlButton';
-import { useGameFlow } from '../../helpers/hooks';
+import useGameFlow from '../../helpers/hooks';
 
 const MAIN_CLASS = 'gameover-page';
 

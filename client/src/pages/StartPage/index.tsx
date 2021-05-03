@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import ControlButton from '../../components/ControlButton';
 import Hand from '../../assets/img/hand.svg';
-import { useGameFlow } from '../../helpers/hooks';
+import useGameFlow from '../../helpers/hooks';
 import './styles.css';
 
 const MAIN_CLASS = 'start-page';

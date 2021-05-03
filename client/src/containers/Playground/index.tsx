@@ -22,7 +22,9 @@ interface IPlaygroundProps extends IBankProps {
 }
 
 const Playground = (props: IPlaygroundProps): ReactElement => {
-  const { getAnswer, moveToNextLevel, endGame, currentLevel } = props;
+  const {
+    getAnswer, moveToNextLevel, endGame, currentLevel, levelValues,
+  } = props;
   const [answer, setAnswer] = useState<IChoice | null>(null);
   const [selectedChoice, setSelectedChoice] = useState<IChoice | null>(null);
   const [waitForAnswer, setWaitForAnswer] = useState(false);
@@ -46,6 +48,7 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
           },
         );
         resultTimer = setTimeout(() => {
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
           clearTimeouts();
           if (isNextLevel) {
             moveToNextLevel();
@@ -74,14 +77,16 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
     setAnswer(getAnswer());
   };
 
+  console.log('sdfdfs');
   const getChoiceState = (choice: IChoice): ChoiceState => {
     if (
-      !waitForAnswer &&
-      selectedChoice &&
-      choice.value === selectedChoice.value
+      !waitForAnswer
+      && selectedChoice
+      && choice.value === selectedChoice.value
     ) {
       return choice.value === answer?.value ? 'correct' : 'wrong';
-    } else if (!waitForAnswer && choice.value === answer?.value) {
+    }
+    if (!waitForAnswer && choice.value === answer?.value) {
       return 'correct';
     }
     return choice.value === selectedChoice?.value ? 'selected' : 'inactive';
@@ -89,7 +94,7 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
 
   return (
     <div className={MAIN_CLASS}>
-      <MobileBank levelValues={props.levelValues} />
+      <MobileBank levelValues={levelValues} />
       <p className={`${MAIN_CLASS}__question`}>
         {currentLevel?.question.value}
       </p>

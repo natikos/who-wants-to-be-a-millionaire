@@ -1,6 +1,6 @@
 import Bank from '../../containers/Bank';
 import Playground from '../../containers/Playground';
-import { useGameFlow } from '../../helpers/hooks';
+import useGameFlow from '../../helpers/hooks';
 import './styles.css';
 
 const MAIN_CLASS = 'game-page';

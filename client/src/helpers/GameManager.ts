@@ -1,13 +1,16 @@
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import { IChoice, IGameData, ILevel } from './models';
 import SessionStorageManager from './SessionStorageManager';
 import { GameStatus, ILevelValue } from './types';
-import axios from 'axios';
-import { toast } from 'react-toastify';
 
 export default class GameManager {
   private static readonly LEVEL_KEY = 'currentLevel';
+
   private static readonly GAME_DATA_KEY = 'gameData';
+
   private static readonly GAME_STATUS_KEY = 'gameStatus';
+
   private static levels: Map<string, ILevel> = new Map();
 
   static get currentLevelId(): string {
@@ -51,9 +54,7 @@ export default class GameManager {
       GameManager.startNewGame();
     }
     const prizesForLevels: ILevelValue[] = [];
-    GameManager.levels.forEach(({ prize }, levelId) =>
-      prizesForLevels.push({ prize, levelId }),
-    );
+    GameManager.levels.forEach(({ prize }, levelId) => prizesForLevels.push({ prize, levelId }));
     return prizesForLevels;
   }
 
@@ -70,9 +71,8 @@ export default class GameManager {
   }
 
   static get isOngoingGame(): boolean {
-    const isPlayingGame =
-      SessionStorageManager.get(GameManager.GAME_STATUS_KEY) ===
-      GameStatus.PLAYING;
+    const isPlayingGame = SessionStorageManager.get(GameManager.GAME_STATUS_KEY)
+      === GameStatus.PLAYING;
     const isLocalDataExist = Boolean(GameManager.levels.size);
     try {
       GameManager.loadDataFromStorage();
@@ -139,7 +139,7 @@ export default class GameManager {
         );
       })
       .catch(() => {
-        toast(`Oh no, error! Please, try again later :(`);
+        toast('Oh no, error! Please, try again later :(');
       });
   }
 

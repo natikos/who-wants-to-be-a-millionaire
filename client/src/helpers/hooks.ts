@@ -4,7 +4,7 @@ import { ROUTES } from './constants';
 import GameManager from './GameManager';
 import { IChoice, ILevel } from './models';
 
-export const useGameFlow = () => {
+const useGameFlow = () => {
   const [currentLevel, setCurrentLevel] = useState<ILevel | null>(null);
   const history = useHistory();
 
@@ -16,6 +16,12 @@ export const useGameFlow = () => {
     setCurrentLevel(GameManager.currentLevel);
   }, [setCurrentLevel, level]);
 
+  const endGame = (): void => {
+    GameManager.finishGame();
+    setCurrentLevel(null);
+    history.push(ROUTES.end);
+  };
+
   const moveToNextLevel = (): void => {
     const isNextLevelExist = GameManager.goToNextLevel();
     if (isNextLevelExist) {
@@ -23,12 +29,6 @@ export const useGameFlow = () => {
     } else {
       endGame();
     }
-  };
-
-  const endGame = (): void => {
-    GameManager.finishGame();
-    setCurrentLevel(null);
-    history.push(ROUTES.end);
   };
 
   const newGame = (): void => {
@@ -43,9 +43,7 @@ export const useGameFlow = () => {
     });
   };
 
-  const getAnswer = (): IChoice | null => {
-    return GameManager.getAnswerForCurrentLevel();
-  };
+  const getAnswer = (): IChoice | null => GameManager.getAnswerForCurrentLevel();
 
   return {
     currentLevel,
@@ -57,3 +55,5 @@ export const useGameFlow = () => {
     levelValues: GameManager.levelValues,
   };
 };
+
+export default useGameFlow;

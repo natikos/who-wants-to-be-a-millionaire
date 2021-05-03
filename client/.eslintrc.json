@@ -1,39 +1,44 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": [
-    "plugin:react/recommended",
-    "airbnb-typescript",
-    "airbnb",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "ecmaVersion": 12,
-    "sourceType": "module",
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "airbnb-typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
-  "plugins": ["react", "@typescript-eslint"],
-  "rules": {
-    "react/jsx-filename-extension": [2, { "extensions": [".jsx", ".tsx"] }],
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "tsx": "never",
-        "ts": "never"
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "react/prop-types": "off",
+        "react/require-default-props": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-filename-extension": [2, { "extensions": [".jsx", ".tsx"] }],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "tsx": "never",
+            "ts": "never"
+          }
+        ],
+        "consistent-return": "off"
       }
-    ]
-  }
 }

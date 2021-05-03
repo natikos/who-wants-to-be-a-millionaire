@@ -11,12 +11,10 @@ interface IHamburgerButton {
 const HamburgerButton = ({
   onClick,
   isOpen,
-}: IHamburgerButton): ReactElement => {
-  return (
-    <button className="hamburger-button" onClick={onClick}>
-      {isOpen ? <Close /> : <Menu />}
-    </button>
-  );
-};
+}: IHamburgerButton): ReactElement => (
+  <button type="button" className="hamburger-button" onClick={onClick}>
+    {isOpen ? <Close /> : <Menu />}
+  </button>
+);
 
 export default HamburgerButton;

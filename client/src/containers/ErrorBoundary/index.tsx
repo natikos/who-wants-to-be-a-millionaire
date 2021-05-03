@@ -9,9 +9,9 @@ interface IErrorBoundaryState {
   hasError: boolean;
 }
 
-export class ErrorBoundary extends Component<
-  IErrorBoundaryProps,
-  IErrorBoundaryState
+export default class ErrorBoundary extends Component<
+IErrorBoundaryProps,
+IErrorBoundaryState
 > {
   constructor(props: IErrorBoundaryProps) {
     super(props);
@@ -23,10 +23,12 @@ export class ErrorBoundary extends Component<
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state;
+    const { children } = this.props;
+    if (hasError) {
       return <StartPage />;
     }
 
-    return this.props.children;
+    return children;
   }
 }

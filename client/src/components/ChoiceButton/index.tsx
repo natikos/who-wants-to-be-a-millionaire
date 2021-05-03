@@ -24,6 +24,7 @@ const ChoiceButton = (props: IChoiceButtonProps): ReactElement => {
   } = props;
   return (
     <button
+      type="button"
       disabled={disabled}
       className={`${MAIN_CLASS} ${MAIN_CLASS}_${state}`}
       onClick={() => onChooseAnswer(value)}

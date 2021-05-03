@@ -8,6 +8,4 @@ export const getRedirectRoute = (): string => {
   return ROUTES.start;
 };
 
-export const formatMoney = (value: number): string => {
-  return value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-};
+export const formatMoney = (value: number): string => value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
