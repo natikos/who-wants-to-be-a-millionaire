@@ -1,15 +1,18 @@
 package game
 
 import (
+	_ "embed"
 	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 )
 
 type HttpError struct {
 	Message string `json:"message"`
 }
+
+//go:embed data.json
+var file []byte
 
 func getGameLevels(response http.ResponseWriter) (GameConfigs, *HttpError) { 
 	handleFailure := func (err error, message string) (*HttpError, bool) {
@@ -21,13 +24,6 @@ func getGameLevels(response http.ResponseWriter) (GameConfigs, *HttpError) {
 		}
 		return nil, false
 	}
-
-	file, readFileError := os.ReadFile("storage/data.json")
-	if err, isError := handleFailure(readFileError, "Invalid path to config file"); isError && err != nil {
-		return nil, err
-	}
-		
-	log.Println("File was readed")
 
 	var data GameConfigs
 
