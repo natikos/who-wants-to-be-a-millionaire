@@ -139,7 +139,9 @@ export default class GameManager {
         );
       })
       .catch(() => {
-        toast('Oh no, error! Please, try again later :(');
+        toast('Oh no, error! Please, try again later :(', {
+          className: 'notification_failure',
+        });
       });
   }
 

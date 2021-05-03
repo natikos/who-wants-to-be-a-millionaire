@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import Menu from '../../assets/img/menu.svg';
-import Close from '../../assets/img/close.svg';
+import Menu from '@game/assets/img/menu.svg';
+import Close from '@game/assets/img/close.svg';
 import './styles.css';
 
 interface IHamburgerButton {

@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import StartPage from '../../pages/StartPage';
+import StartPage from '@game/pages/StartPage';
 
 interface IErrorBoundaryProps {
   children: ReactNode;

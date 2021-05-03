@@ -1,13 +1,13 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import ChoiceButton from '../../components/ChoiceButton';
+import ChoiceButton from '@game/components/ChoiceButton';
 import {
   ALPHABET,
   GO_NEXT_DELAY,
   SHOWING_ANSWER_DELAY,
-} from '../../helpers/constants';
-import { IChoice, ILevel } from '../../helpers/models';
-import { ChoiceState } from '../../helpers/types';
+} from '@game/helpers/constants';
+import { IChoice, ILevel } from '@game/helpers/models';
+import { ChoiceState } from '@game/helpers/types';
 import { IBankProps } from '../Bank';
 import MobileBank from '../MobileBank';
 import './styles.css';

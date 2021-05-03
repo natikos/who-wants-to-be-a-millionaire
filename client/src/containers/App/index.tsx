@@ -1,15 +1,12 @@
 import { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import GameOverPage from '../../pages/GameOverPage';
-import GamePage from '../../pages/GamePage';
-import StartPage from '../../pages/StartPage';
-import GameRoute from '../../components/core/GameRoute';
-import { ROUTES } from '../../helpers/constants';
-import { getRedirectRoute } from '../../helpers/utils';
-import ErrorBoundary from '../ErrorBoundary';
+import { GameOverPage, StartPage, GamePage } from '@game/pages';
+import GameRoute from '@game/components/core/GameRoute';
+import { ROUTES } from '@game/helpers/constants';
+import { getRedirectRoute } from '@game/helpers/utils';
+import ErrorBoundary from '@game/containers/ErrorBoundary';
 import 'react-toastify/dist/ReactToastify.css';
-import './styles.css';
 
 const App = (): ReactElement => (
   <ErrorBoundary>

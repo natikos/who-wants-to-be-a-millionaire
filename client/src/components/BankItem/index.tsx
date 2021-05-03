@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { LevelValueState } from '../../helpers/types';
-import { formatMoney } from '../../helpers/utils';
+import { LevelValueState } from '@game/helpers/types';
+import { formatMoney } from '@game/helpers/utils';
 import './styles.css';
 
 interface IBankItemProps {

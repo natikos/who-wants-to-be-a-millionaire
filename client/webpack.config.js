@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -11,6 +12,11 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    plugins: [
+      new TsconfigPathsPlugin({    
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+      })
+    ],
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),

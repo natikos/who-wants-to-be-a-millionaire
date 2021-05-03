@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import HamburgerButton from '../../components/HamburgerButton';
+import HamburgerButton from '@game/components/HamburgerButton';
 import Bank, { IBankProps } from '../Bank';
 import './styles.css';
 

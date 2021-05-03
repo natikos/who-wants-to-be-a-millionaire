@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { ChoiceState, IOnChooseAnswer } from '../../helpers/types';
+import { ChoiceState, IOnChooseAnswer } from '@game/helpers/types';
 import './styles.css';
 
 interface IChoiceButtonProps {

@@ -13,7 +13,7 @@
     "csslint": "stylelint src/**/*.css --fix"
   },
   "lint-staged": {
-    "*.{tsx,ts,js}": "eslint src/**/*.{tsx,ts,js}",
+    "*.{tsx,ts}": "eslint src/**/*.{tsx,ts,js}",
     "*.css": "stylelint src/**/*.css"
   },
   "stylelint": {
@@ -25,10 +25,11 @@
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-toastify": "^7.0.4",
-    "typescript": "^4.2.4"
+    "react-toastify": "^7.0.4"
   },
   "devDependencies": {
+    "typescript": "^4.2.4",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "@babel/core": "^7.13.16",
     "@babel/node": "^7.13.13",
     "@babel/plugin-proposal-class-properties": "^7.13.0",

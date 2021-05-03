@@ -1,7 +1,7 @@
 import { FC, ReactElement } from 'react';
-import BankItem from '../../components/BankItem';
-import GameManager from '../../helpers/GameManager';
-import { ILevelValue, LevelValueState } from '../../helpers/types';
+import BankItem from '@game/components/BankItem';
+import GameManager from '@game/helpers/GameManager';
+import { ILevelValue, LevelValueState } from '@game/helpers/types';
 import './styles.css';
 
 export interface IBankProps {

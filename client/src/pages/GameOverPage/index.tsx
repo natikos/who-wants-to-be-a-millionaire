@@ -1,9 +1,9 @@
 import './styles.css';
-import Hand from '../../assets/img/hand.svg';
-import GameManager from '../../helpers/GameManager';
-import { formatMoney } from '../../helpers/utils';
-import ControlButton from '../../components/ControlButton';
-import useGameFlow from '../../helpers/hooks';
+import Hand from '@game/assets/img/hand.svg';
+import GameManager from '@game/helpers/GameManager';
+import { formatMoney } from '@game/helpers/utils';
+import ControlButton from '@game/components/ControlButton';
+import useGameFlow from '@game/helpers/hooks';
 
 const MAIN_CLASS = 'gameover-page';
 

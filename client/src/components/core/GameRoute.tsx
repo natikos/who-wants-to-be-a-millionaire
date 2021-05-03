@@ -1,8 +1,8 @@
 import { FC, ReactElement } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import GameManager from '../../helpers/GameManager';
-import { RoutePath } from '../../helpers/types';
-import { getRedirectRoute } from '../../helpers/utils';
+import GameManager from '@game/helpers/GameManager';
+import { RoutePath } from '@game/helpers/types';
+import { getRedirectRoute } from '@game/helpers/utils';
 
 interface IGameRouteProps {
   path: RoutePath;
