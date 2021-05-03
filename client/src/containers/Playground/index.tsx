@@ -77,7 +77,6 @@ const Playground = (props: IPlaygroundProps): ReactElement => {
     setAnswer(getAnswer());
   };
 
-  console.log('sdfdfs');
   const getChoiceState = (choice: IChoice): ChoiceState => {
     if (
       !waitForAnswer

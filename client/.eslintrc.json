@@ -39,6 +39,7 @@
             "ts": "never"
           }
         ],
-        "consistent-return": "off"
+        "consistent-return": "off",
+        "no-console": "error"
       }
 }

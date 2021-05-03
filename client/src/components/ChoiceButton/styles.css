@@ -52,16 +52,6 @@
   stroke: var(--option-inactive-border-color);
 }
 
-.choice-button_inactive:hover:enabled .choice-button__box {
-  fill: var(--option-hover-bg-color);
-  stroke: var(--option-hover-border-color);
-}
-
-.choice-button_inactive:hover:enabled .choice-button__decor_left,
-.choice-button_inactive:hover:enabled .choice-button__decor_right {
-  stroke: var(--option-hover-border-color);
-}
-
 .choice-button_correct .choice-button__box {
   fill: var(--option-correct-bg-color);
   stroke: var(--option-correct-border-color);
@@ -90,4 +80,14 @@
 .choice-button_selected .choice-button__decor_left,
 .choice-button_selected .choice-button__decor_right {
   stroke: var(--option-selected-border-color);
+}
+
+.choice-button_inactive:hover:enabled .choice-button__box {
+  fill: var(--option-hover-bg-color);
+  stroke: var(--option-hover-border-color);
+}
+
+.choice-button_inactive:hover:enabled .choice-button__decor_left,
+.choice-button_inactive:hover:enabled .choice-button__decor_right {
+  stroke: var(--option-hover-border-color);
 }
